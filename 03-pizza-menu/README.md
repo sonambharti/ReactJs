@@ -2,9 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To create the version 5 react app
 ```
-npx create-react-app my-app
-cd my-app
+npx create-react-app@5 <app-name>
+cd <app-name>
 npm start
 ```
 

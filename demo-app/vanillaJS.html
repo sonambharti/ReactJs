@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Vanilla JS App</title>
+</head>
+<body>
+    <div>
+        <h1>Hello World😍</h1>
+        <button class="click-btn">Click Me!</button>
+        <h3 class="advice"></h3>
+        <button class="get-advice" onclick="getAdvice()"> Get Advice </button>
+        <p class="advice-count">
+            You have read <strong class="count">0</strong> pieces of advice.
+        </p>
+    </div>
+    <script>
+        clickBtn = document.querySelector(".click-btn");
+        adviceBtn = document.querySelector(".get-advice");
+        clickbtn = document.querySelector(".click-btn");
+        adviceEl = document.querySelector(".advice");
+        countEl = document.querySelector(".count");
+
+        const getAdvice = async function () {
+            const res = await fetch('https://api.adviceslip.com/advice');
+            const data = await res.json();
+
+            // updating values
+            advice = data.slip.advice;
+            count = count + 1;
+
+            // Manually updating DOM elements
+            adviceEl.textContent = advice;
+            countEl.innerText = count;
+
+        };
+
+        let count = 0;
+        let advice;
+        // getAdvice();
+
+        // Attaching event listener
+        // adviceBtn.addEventListener("click", getAdvice); // this ll be used when onclick is not used in html.
+        clickBtn.addEventListener("click", () => {
+            alert(`Button Clicked😇`);
+        });
+    </script>
+    
+</body>
+</html>
