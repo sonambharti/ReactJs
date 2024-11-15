@@ -11,19 +11,67 @@ const { pizzaData } = require('./data.js');
 
 console.log(`pizzaData = ${pizzaData}`);
 
+
 function App(){
   return (
     <div>
-      <h1>Welcome to the Pizza House!!!!!!!</h1>
-      <Pizza />
+      {/* <h1>Welcome to the Pizza House!!!!!!!</h1> */}
+      <Header />
+      <Menu />
+      <Footer/>
     </div>
+  )
+}
+
+function Header() {
+  return <h1>Pizza🍕 House</h1>
+}
+
+function Menu() {
+  return (<div>
+      <h2>Our Menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>)
+}
+
+function Footer(){
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour
+  console.log(isOpen);
+  // if (hour >= openHour && hour <= closeHour){
+  //   alert(`We're currently open!`);
+  // }else{
+  //   alert(`Sorry, We are closed.`);
+  // }
+  return (
+    <footer>
+      {
+        new Date().toLocaleTimeString()
+      }. We're currently open.
+    </footer>
   )
 }
 
 function Pizza(){
   return <>
-    <h2>Pizza🍕 Menu</h2>
-    {/* <p>{ pizzaData }</p> */}
+    <img src="./../pizzas/spinaci.jpg" alt="Pizza🍕 Spinaci"/>
+    <h2>Pizza🍕 Spinaci</h2>
+    <p>Tomato, Mozerella, Spinach, Recotta and cheese</p>
+    {/* <p>
+      {
+        pizzaData.forEach(obj)
+        // pizzaData.forEach((obj) => {
+          // console.log(obj);
+        // })
+    }
+    </p> */}
   </>
 }
 
