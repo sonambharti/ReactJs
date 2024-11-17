@@ -1,4 +1,7 @@
 import './App.css';
+const {skills} = require('./skillData.js')
+
+console.log(skills)
 
 function Avtar() {
   return <img className="avtar" src="./sonam.jpg" alt="Sonam Bharti" />;
@@ -20,28 +23,46 @@ function Intro() {
 function SkillList(){
   return (
     <div className='skill-list'>
-      
-      <Skill skill="C/C++" emoji="🅱️" color="#1245" />
+
+      <ul>
+        {skills.map((skill) => (
+          <Skill skill={skill.skill} color={skill.color} level={skill.level}/>
+        ))}
+      </ul>
+      {/* <Skill skill="C/C++" emoji="🅱️" color="#1245" />
       <Skill skill="Java" emoji="💪" color="orangered" />
       <Skill skill="Python" emoji="🐍" color="yellow" />
       <Skill skill="HTML + CSS" emoji="💪"color="blue" />
       <Skill skill="JavaScript" emoji="💪" color="#156" />
       <Skill skill="React" emoji="✡️" color="red"/>
-      <Skill skill="Node" emoji="🔙" color="pink" />
+      <Skill skill="Node" emoji="🔙" color="pink" /> */}
 
     </div>
   )
 
 }
 
-function Skill(props) {
+function Skill({skill, color, level}) {
   return (
-    <div className='skill' style={{backgroundColor: props.color}}>
-      <span>{props.skill}</span>
-      <span>{props.emoji}</span>
+    <div className='skill' style={{backgroundColor: color}}>
+      <span>{skill}</span>
+      <span>
+        {level==='beginner' && "👶"}
+        {level==='intermediate' && "👍"}
+        {level==='advanced' && "💪"}
+        </span>
     </div>
   )
 }
+
+// function Skill(props) {
+//   return (
+//     <div className='skill' style={{backgroundColor: props.color}}>
+//       <span>{props.skill}</span>
+//       <span>{props.emoji}</span>
+//     </div>
+//   )
+// }
 
 export default function App () {
   return (
