@@ -16,7 +16,7 @@ const skills = [
       },
       {
         skill: "Git and GitHub",
-        level: "advance",
+        level: "advanced",
         color: "#E84F33"
       },
       {

@@ -1,10 +1,12 @@
 import './App.css';
+import pic from './MyPic.jpg';
 const {skills} = require('./skillData.js')
 
 console.log(skills)
 
 function Avtar() {
-  return <img className="avtar" src="./sonam.jpg" alt="Sonam Bharti" />;
+  // return <img className="avtar" src="sonam.jpg" alt="Sonam Bharti" />;
+  return <img className="avtar" src={pic} alt="Sonam Bharti" />;
 }
 function Intro() {
   return (
@@ -24,11 +26,10 @@ function SkillList(){
   return (
     <div className='skill-list'>
 
-      <ul>
-        {skills.map((skill) => (
-          <Skill skill={skill.skill} color={skill.color} level={skill.level}/>
-        ))}
-      </ul>
+      {skills.map((skill) => (
+        <Skill skill={skill.skill} color={skill.color} level={skill.level}/>
+      ))}
+      
       {/* <Skill skill="C/C++" emoji="🅱️" color="#1245" />
       <Skill skill="Java" emoji="💪" color="orangered" />
       <Skill skill="Python" emoji="🐍" color="yellow" />
