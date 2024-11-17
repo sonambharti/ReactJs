@@ -42,5 +42,6 @@ const pizzaData = [
       soldOut: false,
     },
   ];
-
-  module.exports = {pizzaData};
+// console.log(pizzaData);
+module.exports = {pizzaData};
+// module.exports = JSON.stringify(pizzaData);

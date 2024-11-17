@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-const { pizzaData } = require('./data.js');
-
+import "./index.css";
+// const getPizzaData = require('./data.js');
+const {pizzaData} = require('./data.js');
 
 /** Rules to write functions in react ------
  * Always start the function name with capital letter / Upper case
@@ -9,12 +10,12 @@ const { pizzaData } = require('./data.js');
  * Nesting never means defining a function inside a function in React. (Although it works.)
  */
 
-console.log(`pizzaData = ${pizzaData}`);
-
+// let pizzaData = JSON.parse(getPizzaData);
+// console.log(pizzaData);
 
 function App(){
   return (
-    <div>
+    <div className="container">
       {/* <h1>Welcome to the Pizza House!!!!!!!</h1> */}
       <Header />
       <Menu />
@@ -24,18 +25,110 @@ function App(){
 }
 
 function Header() {
-  return <h1>Pizza🍕 House</h1>
+  const style = {color: "red", fontSize: "48px", textTransform: "uppercase"};
+  return (
+          <header className='header'>
+            {/* <h1 style={{color: "red", fontSize: "48px", textTransform: "uppercase"}}>Pizza🍕 House🏠</h1> */}
+            <h1 style={style}>Pizza🍕 House🏠</h1>
+          </header>
+        )
 }
 
 function Menu() {
-  return (<div>
+  // const pizzaData = pizzaData;
+  // const pizzaData = []
+  // console.log(`pizzaData.length  = ${pizzaData.length}`)
+  // pizzaData.map(pizza => console.log(pizza));
+  return (
+    <div className='menu'>
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+
+      {/*  Conditional rendering with terneries */}
+      {pizzaData.length > 0  ? (
+        <ul className="pizzas">
+          {pizzaData.map((pizza)=> (
+            <Pizza pizzaObj={pizza} key={pizza.name}/>
+          ))}
+        </ul>
+      ): 
+      <p>We'are working on our menu. Please come back later 😊.</p>
+      }
+
+      {/* {pizzaData.length > 0  && 
+        <ul className="pizzas">
+          {pizzaData.map((pizza)=> (
+            <Pizza pizzaObj={pizza} key={pizza.name}/>
+          ))}
+        </ul>
+      } */}
+     
+
+      {/* {pizzaData && pizzaData.length > 0  && 
+        <ul className="pizzas">
+          {pizzaData.map((pizza)=> (
+            <li className='pizza'>
+            <img src={pizza.photoName} alt={pizza.name}/>
+            <div >
+              <h3>{pizza.name}</h3>
+              <p>{pizza.ingredients}</p>
+              <span>Rs. {pizza.price * 15}</span>
+            </div>
+          </li>
+          ))}
+        </ul>
+      } */}
+      {/* <Pizza 
+        name="Pizza🍕 Spinaci"
+        ingredients="Tomato, Mozerella, Spinach, and Recotta cheese"
+        photoName="./../pizzas/spinaci.jpg"
+        price={300}
+      />
+
+      <Pizza 
+        name="Pizza🍕 Funghi"
+        ingredients="Tomato, and Mushrooms"
+        photoName="./../pizzas/funghi.jpg"
+        price={250}
+      />
+
+      <Pizza 
+        name="Pizza🍕 Margherita"
+        ingredients="Tomato, and Cottage cheese"
+        photoName="./../pizzas/margherita.jpg"
+        price={450}
+      />
+
+      <Pizza 
+        name="Pizza🍕 Focaccia"
+        ingredients="Tomato, and Mushrooms"
+        photoName="./../pizzas/focaccia.jpg"
+        price={250}
+      />
+
+      <Pizza 
+        name="Pizza🍕 Prosciutto"
+        ingredients="Tomato, and Mushrooms"
+        photoName="./../pizzas/prosciutto.jpg"
+        price={550}
+      />
+
+      
+      <Pizza 
+        name="Pizza🍕 Salamino"
+        ingredients="Tomato, and Mushrooms"
+        photoName="./../pizzas/salamino.jpg"
+        price={350}
+      />
+
+      <Pizza 
+        name="Pizza🍕 Spinaci"
+        ingredients="Tomato, Spinach and Mushrooms"
+        photoName="./../pizzas/spinaci.jpg"
+        price={300}
+      /> */}
+
+      
+
     </div>)
 }
 
@@ -43,37 +136,65 @@ function Footer(){
   const hour = new Date().getHours();
   const openHour = 12;
   const closeHour = 22;
-  const isOpen = hour >= openHour && hour <= closeHour
-  console.log(isOpen);
+  const isOpen = hour >= openHour && hour <= closeHour;
+  // console.log(isOpen);
   // if (hour >= openHour && hour <= closeHour){
   //   alert(`We're currently open!`);
   // }else{
   //   alert(`Sorry, We are closed.`);
   // }
-  return (
-    <footer>
-      {
-        new Date().toLocaleTimeString()
-      }. We're currently open.
+  // return (
+  //   <footer className='footer'>
+  //     {
+  //       new Date().toLocaleTimeString()
+  //     }. We're currently open.
+  //   </footer>
+  // )
+  return <footer className='footer'>{
+    isOpen && (
+    <div className='order'>
+      <p>
+        We're open until {closeHour}:00. Come visit us or order online.
+      </p> 
+      <button className='btn'> Order Now </button>
+      </div>)}
     </footer>
-  )
 }
 
-function Pizza(){
-  return <>
-    <img src="./../pizzas/spinaci.jpg" alt="Pizza🍕 Spinaci"/>
-    <h2>Pizza🍕 Spinaci</h2>
-    <p>Tomato, Mozerella, Spinach, Recotta and cheese</p>
-    {/* <p>
-      {
-        pizzaData.forEach(obj)
-        // pizzaData.forEach((obj) => {
-          // console.log(obj);
-        // })
-    }
-    </p> */}
-  </>
+function Pizza(props){
+  console.log(props)
+  // return <div className='pizza'>
+  //   <img src={props.photoName} alt={props.name}/>
+  //   <h3>{props.name}</h3>
+  //   <p>{props.ingredients}</p>
+  //   <span>Rs. {props.price * 15}</span>
+    
+  // </div>
+  return <li className='pizza'>
+    <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}/>
+    <div >
+      <h3>{props.pizzaObj.name}</h3>
+      <p>{props.pizzaObj.ingredients}</p>
+      <span>Rs. {props.pizzaObj.price * 15}</span>
+    </div>
+  </li>
 }
+
+// function Pizza(){
+//   return <>
+//     <img src="./../pizzas/spinaci.jpg" alt="Pizza🍕 Spinaci"/>
+//     <h3>Pizza🍕 Spinaci</h3>
+//     {/* <p>Tomato, Mozerella, Spinach,  and Recotta cheese</p> */}
+//     {/* <p>
+//       {
+//         pizzaData.forEach(obj)
+//         // pizzaData.forEach((obj) => {
+//           // console.log(obj);
+//         // })
+//     }
+//     </p> */}
+//   </>
+// }
 
 // React v18
 const root = ReactDOM.createRoot(document.getElementById('root'));
