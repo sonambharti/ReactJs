@@ -42,14 +42,22 @@ function Menu() {
   return (
     <div className='menu'>
       <h2>Our Menu</h2>
-
+      
       {/*  Conditional rendering with terneries */}
       {pizzaData.length > 0  ? (
-        <ul className="pizzas">
-          {pizzaData.map((pizza)=> (
-            <Pizza pizzaObj={pizza} key={pizza.name}/>
-          ))}
-        </ul>
+        // wrapped in a react fragment - it doesn't leave any trace to HTML DOM tree
+        // To add any key if required we can use <React.Fragment key=""></React.Fragment>
+        <>
+          <p>
+            Authentic Italian cuisine. 6 creatives dishes to choose from.
+            All from our stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas">
+            {pizzaData.map((pizza)=> (
+              <Pizza pizzaObj={pizza} key={pizza.name}/>
+            ))}
+          </ul>
+        </>
       ): 
       <p>We'are working on our menu. Please come back later 😊.</p>
       }
@@ -150,6 +158,9 @@ function Footer(){
   //     }. We're currently open.
   //   </footer>
   // )
+  if (!isOpen){
+    return <h3>We're available between {openHour}:00 and {closeHour}:00.</h3>
+  }
   return <footer className='footer'>{
     isOpen && (
     <div className='order'>
@@ -170,12 +181,30 @@ function Pizza(props){
   //   <span>Rs. {props.price * 15}</span>
     
   // </div>
-  return <li className='pizza'>
+  // if (props.pizzaObj.soldOut) return null;
+
+  // return <li className='pizza'>
+  //   <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}/>
+  //   <div >
+  //     <h3>{props.pizzaObj.name}</h3>
+  //     <p>{props.pizzaObj.ingredients}</p>
+  //     <span>Rs. {props.pizzaObj.price * 15}</span>
+  //   </div>
+  // </li>
+
+  return <li className={`pizza ${props.pizzaObj.soldOut ? "sold-out" : ""}`}>
     <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}/>
     <div >
       <h3>{props.pizzaObj.name}</h3>
       <p>{props.pizzaObj.ingredients}</p>
-      <span>Rs. {props.pizzaObj.price * 15}</span>
+
+      {/* {props.pizzaObj.soldOut ? (
+          <span>SOLD OUT</span> 
+        ) : (
+          <span>{"Rs. " + props.pizzaObj.price * 15}</span>
+        )
+      } */}
+      <span>{props.pizzaObj.soldOut ? "SOLD OUT" : "Rs. " + props.pizzaObj.price * 15}</span>
     </div>
   </li>
 }
