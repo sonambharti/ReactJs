@@ -23,11 +23,12 @@ function Intro() {
 }
 
 function SkillList(){
+  let c = 0;
   return (
     <div className='skill-list'>
 
       {skills.map((skill) => (
-        <Skill skill={skill.skill} color={skill.color} level={skill.level}/>
+        <Skill skill={skill.skill} color={skill.color} level={skill.level} key={c += 1}/>
       ))}
       
       {/* <Skill skill="C/C++" emoji="🅱️" color="#1245" />
@@ -72,7 +73,6 @@ export default function App () {
     <div className="data">
       <Intro />
       <SkillList />
-
     </div>
     </div>
 
