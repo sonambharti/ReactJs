@@ -15,7 +15,7 @@ export default function App() {
   // const [items, setItems] = useState([]);
   const [items, setItems] = useState(initialItems);
   // const [numItems, setNumItems] = useState(initialItems.length); // not a good way to use, instead use derived state
-  
+
   function handleAddItems(item){
     /**
      * Note: React is all about immutability. We are not allowed to mutate state.
@@ -35,14 +35,20 @@ export default function App() {
   function handleToggleItems(id) {
     setItems(items => items.map(item => item.id === id ? {...item, packed: !item.packed} : item))
   }
+
+  function handleClearList() {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete all items?"
+    )
+    if (confirmed) setItems([]);
+  }
+  
   return (
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems}/>
-      <PackingList items={items} onDeleteItem={handleDeleteItems} onToggleItems={handleToggleItems}/>
-      <Stats items={items} />
+      <PackingList items={items} onToggleItems={handleToggleItems} onDeleteItem={handleDeleteItems} onClearList={handleClearList}/>
+      <Stats items={items}/>
     </div>
   );
 }
-
-
