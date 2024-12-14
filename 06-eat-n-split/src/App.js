@@ -13,7 +13,7 @@ function FormSplitBill({selectedFriend, onSplitBill}) {
   const [bill, setBill] = useState("");
   const [paidByUser, setPaidByUser] = useState('');
   const [whoIsPaying, setWhoIsPaying] = useState("user");
-  const paidByFriend = bill ? bill - paidByUser : "";
+  const paidByFriend = bill ? bill - paidByUser : "";     // Derived state
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -141,9 +141,7 @@ function FriendsList({ friends, onSelection, selectedFriend }) {
   <ul>
     {
       friends.map((friend) => (
-        <li>
           <Friend friend={friend} key={friend.id} selectedFriend={selectedFriend} onSelection={onSelection} />
-        </li>
       ))
     }
   </ul>)
