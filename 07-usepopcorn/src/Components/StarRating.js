@@ -47,7 +47,18 @@ function Star({onRate, full, onHoverIn, onHoverOut, color, size}){
         </span>
     )
 }
-export default function StarRating({maxRating = 5, color = '#fcc419', size=48, messages=[], onSetRating,}) { // setting maxRating = 5 as default
+
+StarRating.propTypes = {
+    maxRating: propTypes.number,
+    defaultRating: propTypes.number,
+    color: propTypes.string,
+    size: propTypes.number,
+    messages: propTypes.array,
+    className: propTypes.string,
+    onSetRating: propTypes.func,
+};
+
+export default function StarRating({maxRating = 5, color = '#fcc419', size=48, className="", messages=[], defaultRating=0, onSetRating,}) { // setting maxRating = 5 as default
     const containerStyle = {
         display: 'flex',
         alignItems: "center",
