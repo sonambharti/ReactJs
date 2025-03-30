@@ -28,7 +28,7 @@ export default function App() {
         // useEffect(function(){
         //     console.log('Whenever query is changed or updated');
         // }, [query])
-        // console.log('During render');
+        // console.log('During render');()
         
         // useEffect(function() {
         //   fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
@@ -350,6 +350,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
           <header>
             <button className="btn-back" onClick={onCloseMovie}>
               &larr;
+              {/* larr is component of html for left array */}
             </button>
             <img src={poster} alt={`Poster of ${movie} movie`} />
             <div className="details-overview">
@@ -396,6 +397,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     </div>
   );
 }
+
 
 function WatchedSummary({ watched }) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
